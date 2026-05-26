@@ -3,7 +3,13 @@
  * Mirrors supabase/migrations/<ts>_create_jobs.sql.
  */
 
-export type JobStatus = "queued" | "downloading" | "uploaded" | "failed";
+export type JobStatus =
+  | "queued"
+  | "downloading"
+  | "uploaded"
+  | "transcribing"
+  | "transcribed"
+  | "failed";
 
 export interface JobErrorMeta {
   code: string;
@@ -25,6 +31,8 @@ export interface JobRow {
   youtube_url: string;
   status: JobStatus;
   video_path: string | null;
+  transcript_text: string | null;
+  srt_path: string | null;
   metadata: JobMetadata;
   created_at: string;
 }
@@ -35,5 +43,7 @@ export interface JobInsert {
   youtube_url: string;
   status?: JobStatus;
   video_path?: string | null;
+  transcript_text?: string | null;
+  srt_path?: string | null;
   metadata?: JobMetadata;
 }
