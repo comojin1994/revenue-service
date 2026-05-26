@@ -42,3 +42,7 @@ export function getServiceRoleClient(): SupabaseClient {
 export function getStorageBucket(): string {
   return process.env.SUPABASE_STORAGE_BUCKET?.trim() || "videos";
 }
+
+export function getTranscriptsBucket(): string {
+  return process.env.SUPABASE_TRANSCRIPTS_BUCKET?.trim() || "transcripts";
+}
