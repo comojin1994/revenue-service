@@ -19,9 +19,10 @@ describe("formatSrtTimestamp", () => {
 
   it("rounds milliseconds and carries into seconds", () => {
     expect(formatSrtTimestamp(0.999)).toBe("00:00:00,999");
-    // 0.9995 rounds to 1000 ms -> carries to 1 second, 0 ms.
+    // 0.9995 * 1000 === 999.5 -> Math.round -> 1000 ms -> carries to 1s, 0ms.
     expect(formatSrtTimestamp(0.9995)).toBe("00:00:01,000");
-    expect(formatSrtTimestamp(1.0005)).toBe("00:00:01,000");
+    // 1.0005 * 1000 === 1000.5 -> Math.round -> 1001 ms -> 1s, 1ms.
+    expect(formatSrtTimestamp(1.0005)).toBe("00:00:01,001");
   });
 
   it("carries seconds and minutes correctly", () => {
